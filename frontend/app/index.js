@@ -155,11 +155,7 @@ const Welcome = () => {
                             <>
                                 <TouchableOpacity
                                     onPress={() => {
-                                        // skip login for now
-                                        saveUser("username", "abu");
-                                        saveUser("password", "abu");
-                                        router.push("/home");
-                                        // setState(1);
+                                        setState(1);
                                     }}
                                     style={styles.welcomeBtn}>
                                     <Text style={{ fontSize: 20 }}>Log in</Text>

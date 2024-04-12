@@ -3,7 +3,6 @@ let symptomsList;
 require("../util/web-scraper")().then((symptoms) => {
     symptomsList = symptoms;
 });
-const generateColorCircle = require("../util/image-api");
 
 router.route("/food").post(async (req, res) => {
     let responseSent = false;
@@ -58,34 +57,6 @@ router.route("/symptom").post(async (req, res) => {
                 success: false,
                 message: "Error: " + error,
                 symptoms: [],
-            });
-        }
-    }
-});
-
-router.route("/image").post(async (req, res) => {
-    let responseSent = false;
-    const colors = req.body.colors;
-    const size = req.body.size;
-
-    try {
-        const buffer = generateColorCircle(size, colors);
-        if (!responseSent) {
-            responseSent = true;
-            res.status(200).json({
-                success: true,
-                message: "Symptoms retrieved",
-                data: buffer,
-            });
-        }
-    } catch (error) {
-        console.log(error);
-        if (!responseSent) {
-            responseSent = true;
-            res.status(400).json({
-                success: false,
-                message: "Error: " + error,
-                data: null,
             });
         }
     }
